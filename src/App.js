@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import CWGrid from './components/CWGrid'
+import Solver from './components/Solver'
+import { useState, useEffect } from 'react'
 
 function App() {
+  //init blank grid
+  let len = 15
+  const [squares, setSquares] = useState(Array(len).fill(Array(len).fill('r ')))
+  let squaresMutable = Array(len).fill(Array(len).fill(' '))
+
+  function changeSquare(i, j, val) {
+    squaresMutable[i][j] = val
+    setSquares(squaresMutable)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Solver />
+      <CWGrid len={len} squares={squares} />
     </div>
   );
 }
